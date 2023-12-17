@@ -7,10 +7,18 @@
     </div>
     <div class="main">
       <div class="wrapper">
-        <div class="input"><textarea v-model="base" @input="check"></textarea></div>
+        <div class="input">
+          <textarea placeholder="ここにテキストを入力" v-model="base" @input="check"></textarea>
+        </div>
         <p class="center"><img src="./assets/arrow.png" /></p>
         <div class="output" v-html="result"></div>
       </div>
+    </div>
+    <div class="wrapper">
+      語録チェッカーは、文章中の「語録」を強調表示するウェブアプリです。<br />
+      所謂「淫夢営業」の回避など、様々な用途にご活用いただけます。<br />
+      <span class="high">赤色</span>：危険 (直接的な語録表現)<br />
+      <span class="mid">橙色</span>：注意 (語録を思わせる表現)
     </div>
     <br />
     <div class="wrapper">
@@ -50,16 +58,18 @@ export default {
     check() {
       let result = this.base
       for (let i = 0; i < this.list.high.length; i++) {
-        result = result.replaceAll(
-          this.list.high[i],
-          '<span class="high">' + this.list.high[i] + '</span>'
-        )
+        let template = ''
+        for (let j = 0; j < this.list.high[i].length; j++) {
+          template += '<span class="high">' + this.list.high[i].charAt(j) + '</span>'
+        }
+        result = result.replaceAll(this.list.high[i], template)
       }
       for (let i = 0; i < this.list.mid.length; i++) {
-        result = result.replaceAll(
-          this.list.mid[i],
-          '<span class="mid">' + this.list.mid[i] + '</span>'
-        )
+        let template = ''
+        for (let j = 0; j < this.list.mid[i].length; j++) {
+          template += '<span class="mid">' + this.list.mid[i].charAt(j) + '</span>'
+        }
+        result = result.replaceAll(this.list.mid[i], template)
       }
       this.result = result
     }

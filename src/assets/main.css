@@ -24,7 +24,7 @@ p {
 .header {
   padding: 20px;
   color: #fff;
-  background-color: #00a0e9;
+  background-color: #f44336;
   text-align: center;
 }
 
@@ -102,13 +102,9 @@ p {
     padding-right: 30px;
   }
 
-  .main .input img {
-    width: 100%;
-    height: 56.25%;
-  }
-
-  .main .output img {
-    width: 79.2%;
-    height: 54%;
+  .main .input,
+  .main .output {
+    width: 95%;
+    height: 150px;
   }
 }
