@@ -63,9 +63,11 @@ p {
 
 .main .output {
   width: 800px;
-  height: 200px;
+  min-height: 200px;
+  max-height: 400px;
   padding: 10px;
   text-align: left;
+  overflow-y: auto;
 }
 
 .main .canvas {
@@ -105,6 +107,14 @@ p {
   .main .input,
   .main .output {
     width: 95%;
+  }
+
+  .main .input {
     height: 150px;
+  }
+
+  .main .output {
+    min-height: 150px;
+    max-height: 300px;
   }
 }
