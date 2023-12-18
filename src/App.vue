@@ -8,7 +8,7 @@
     <div class="main">
       <div class="wrapper">
         <div class="input">
-          <textarea placeholder="ここにテキストを入力" v-model="base" @input="check"></textarea>
+          <textarea placeholder="ここにテキストを入力" v-model="base"></textarea>
         </div>
         <p class="center"><img src="./assets/arrow.png" /></p>
         <div class="output" v-html="result"></div>
@@ -44,7 +44,6 @@ export default {
   data() {
     return {
       base: '',
-      result: '',
       list: list[0],
       adClient: import.meta.env.VITE_AD_CLIENT,
       adSlot: import.meta.env.VITE_AD_SLOT,
@@ -54,8 +53,8 @@ export default {
   mounted() {
     this.$gtag.pageview('/')
   },
-  methods: {
-    check() {
+  computed: {
+    result() {
       let result = this.base
       for (let i = 0; i < this.list.high.length; i++) {
         let template = ''
@@ -71,7 +70,7 @@ export default {
         }
         result = result.replaceAll(this.list.mid[i], template)
       }
-      this.result = result
+      return result
     }
   }
 }
