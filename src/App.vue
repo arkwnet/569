@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import sanitizeHtml from 'sanitize-html'
 import list from './assets/list.json'
 export default {
   name: 'App',
@@ -55,7 +56,7 @@ export default {
   },
   computed: {
     result() {
-      let result = this.base
+      let result = sanitizeHtml(this.base)
       for (let i = 0; i < this.list.high.length; i++) {
         let template = ''
         for (let j = 0; j < this.list.high[i].length; j++) {
@@ -71,6 +72,9 @@ export default {
         result = result.replaceAll(this.list.mid[i], template)
       }
       return result
+    },
+    sanitizeHtml(html) {
+      return sanitizeHtml(html, {})
     }
   }
 }
